@@ -17,7 +17,7 @@ Lambda_eX is accessible through the ``lambdarank`` parameter ``lamnda_ex`` (or `
   - ``"all-static"`` to enforce Lambda-eX all-static
   - ``"all-random"`` to enforce Lambda-eX all-random
 
-===============================
+
 
 <img src=https://github.com/microsoft/LightGBM/blob/master/docs/logo/LightGBM_logo_black_text.svg width=300 />
 
