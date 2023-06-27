@@ -230,19 +230,27 @@ class LambdarankNDCG : public RankingObjective {
 
         /* if 0 is plain LambdaMART */
         if (strategy_) {
+          if (strategy_ == 2 || strategy_ == 5) {
+            std::mt19937 gen(rands_seeds[curr_iter_]);
+            std::shuffle(std::begin(vector_idx), std::end(vector_idx), gen);
+          }
+          else
+            vector_idx = sorted_idx;
+
+          /* all strategy */
+          if (strategy_ == 3 || (strategy_ > 3 && min_missed_topk_label != min_pos_label)) {
+            for (data_size_t i = 0; i < cnt; ++i) {
+              data_size_t idx = vector_idx[i];
+              if (missed_topk[label[idx]]>0 && available_docs[idx]) {
+                available_docs[idx] = false;
+                selected_missed_topk[selected_missed_topk_size] = sorted_pos[idx];
+                selected_missed_topk_size++;
+              }
+            }
           /* static and random strategies */
-          if (strategy_ == 1 || strategy_ == 2 || ((strategy_ == 4 || strategy_ == 5) && min_missed_topk_label == min_pos_label)) {
-
-            if (strategy_ == 2 || strategy_ == 5) {
-              std::mt19937 gen(rands_seeds[curr_iter_]);
-              std::shuffle(std::begin(vector_idx), std::end(vector_idx), gen);
-            }
-            else {
-              vector_idx = sorted_idx;
-            }
-
+          } else {
             /* number of missed-top-k documents to select */
-            int to_select = std::accumulate(missed_topk.begin(), missed_topk.end(), 0, [](int sum, int val){return (val > 0)? sum + val : sum;});
+            int to_select = std::accumulate(missed_topk.begin(), missed_topk.end(), 0, [](int sum, int val) { return (val > 0)? sum + val : sum; });
 
             for (data_size_t i = 0; to_select > 0; ++i) {
               data_size_t idx = vector_idx[i];
@@ -252,17 +260,6 @@ class LambdarankNDCG : public RankingObjective {
                 selected_missed_topk_size++;
                 missed_topk[label[idx]]--;
                 to_select--;
-              }
-            }
-          } else { /* all strategy */
-            vector_idx = sorted_idx;
-
-            for (data_size_t i = 0; i < cnt; ++i) {
-              data_size_t idx = vector_idx[i];
-              if (missed_topk[label[idx]]>0 && available_docs[idx]) {
-                available_docs[idx] = false;
-                selected_missed_topk[selected_missed_topk_size] = sorted_pos[idx];
-                selected_missed_topk_size++;
               }
             }
           }
