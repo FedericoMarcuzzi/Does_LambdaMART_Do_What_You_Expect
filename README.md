@@ -2,7 +2,7 @@
 
 13TH Italian Information Retrieval Workshop
 
-[![Does LambdaMART Do What You Expect?](https://www.dei.unipd.it/~faggioli/temp/IIR-proceedings/paper-16.pdf)
+Paper code of: [Does LambdaMART Do What You Expect?](https://www.dei.unipd.it/~faggioli/temp/IIR-proceedings/paper-16.pdf)
 
 Lambda-eX is a document-pairs selection strategy built on top of LightGBM.
 
