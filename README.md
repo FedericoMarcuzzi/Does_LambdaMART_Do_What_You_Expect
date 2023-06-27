@@ -1,3 +1,21 @@
+<img src=http://iir2023.isti.cnr.it/wp-content/uploads/2023/03/IIR-compatto.png width=300 />
+
+13TH Italian Information Retrieval Workshop
+
+[![Does LambdaMART Do What You Expect?](https://www.dei.unipd.it/~faggioli/temp/IIR-proceedings/paper-16.pdf)
+
+Lambda-eX is a document-pairs selection strategy built on top of LightGBM.
+
+Implemented only for ``lambdarank`` objective function.
+
+Lambda_eX is accessible through the ``lambdarank` parameter ``lamnda_ex``(or ``lambdaex``) with the following value:
+  - ``"plain"`` to enforce the original LambdaRank algorithm
+  - ``"static"`` to enforce Lambda-eX static
+  - ``"random"`` to enforce Lambda-eX random
+  - ``"all"`` to enforce Lambda-eX all
+  - ``"all-static"`` to enforce Lambda-eX all-static
+  - ``"all-random"`` to enforce Lambda-eX all-random
+
 <img src=https://github.com/microsoft/LightGBM/blob/master/docs/logo/LightGBM_logo_black_text.svg width=300 />
 
 Light Gradient Boosting Machine
