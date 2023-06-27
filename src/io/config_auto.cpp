@@ -158,6 +158,7 @@ const std::unordered_map<std::string, std::string>& Config::alias_table() {
   {"num_classes", "num_class"},
   {"unbalance", "is_unbalance"},
   {"unbalanced_sets", "is_unbalance"},
+  {"lambdaex", "lambda_ex"},
   {"metrics", "metric"},
   {"metric_types", "metric"},
   {"output_freq", "metric_freq"},
@@ -303,6 +304,7 @@ const std::unordered_set<std::string>& Config::parameter_set() {
   "tweedie_variance_power",
   "lambdarank_truncation_level",
   "lambdarank_norm",
+  "lambda_ex",
   "label_gain",
   "metric",
   "metric_freq",
@@ -615,6 +617,8 @@ void Config::GetMembersFromString(const std::unordered_map<std::string, std::str
 
   GetBool(params, "lambdarank_norm", &lambdarank_norm);
 
+  GetString(params, "lambda_ex", &lambda_ex);
+
   if (GetString(params, "label_gain", &tmp_str)) {
     label_gain = Common::StringToArray<double>(tmp_str, ',');
   }
@@ -892,6 +896,7 @@ const std::unordered_map<std::string, std::vector<std::string>>& Config::paramet
     {"tweedie_variance_power", {}},
     {"lambdarank_truncation_level", {}},
     {"lambdarank_norm", {}},
+    {"lambda_ex", {"lambdaex"}},
     {"label_gain", {}},
     {"metric", {"metrics", "metric_types"}},
     {"metric_freq", {"output_freq"}},

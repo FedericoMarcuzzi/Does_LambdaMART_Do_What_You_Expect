@@ -952,6 +952,15 @@ struct Config {
   // desc = set this to ``false`` to enforce the original lambdarank algorithm
   bool lambdarank_norm = true;
 
+  // desc = used only in ``lambdarank`` application
+  // desc = set this to ``"plain"`` to enforce the original lambdarank algorithm
+  // desc = set this to ``"static"`` to enforce lambda-ex static
+  // desc = set this to ``"random"`` to enforce lambda-ex random
+  // desc = set this to ``"all"`` to enforce lambda-ex all
+  // desc = set this to ``"all-static"`` to enforce lambda-ex all-static
+  // desc = set this to ``"all-random"`` to enforce lambda-ex all-random
+  std::string lambda_ex = "plain";
+
   // type = multi-double
   // default = 0,1,3,7,15,31,63,...,2^30-1
   // desc = used only in ``lambdarank`` application
