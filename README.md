@@ -2,11 +2,10 @@ LambdaRank Gradients are Incoherent
 ===============================
 
 This code is for CIKM 2023 full paper [LambdaRank Gradients are Incoherent]().
-
-Overview
 ---
 
-![](img/RelATE.png)
+Abstract
+---
 
 In Information Retrieval (IR), the Learning-to-Rank (LTR) task requires building a ranking model that optimises a specific IR metric.
 One of the most effective approaches to do so is the well-known LambdaRank algorithm.
