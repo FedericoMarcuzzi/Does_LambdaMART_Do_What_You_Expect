@@ -34,7 +34,7 @@ Lambda-eX is accessible through the ``lambdarank`` parameter ``lambda_ex`` (or `
   - ``"all-static"`` to enforce Lambda-eX all-static.
   - ``"all-random"`` to enforce Lambda-eX all-random.
 
-Loss Function
+Loss functions
 ---
 The code implements three loss functions: LambdaRank, NDCG-Loss2 and NDCG-Loss2++. The three loss functions are accessible through the ``lambdarank`` parameters ``lambdarank_weight`` (or ``lr_mu``) and ``lambdaloss_weight`` (or ``ll_mu``), with the following combinations:
   - ``lambdarank_weight = 1`` and ``lambdaloss_weight = 0`` to enforce the LambdaRank loss function (default).
