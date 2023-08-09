@@ -38,7 +38,7 @@ Lambda_eX is accessible through the ``lambdarank`` parameter ``lamnda_ex`` (or `
 
 Loss Function
 ---
-The code implements three loss functions: LambdaRank, NDCG-Loss2 and NDCG-Loss2++.
+The code implements three loss functions: LambdaRank, NDCG-Loss2 and NDCG-Loss2++. The three loss functions are accessible through the ``lambdarank`` parameters ``lambdarank_weight`` (or ``lr_mu``) and ``lambdaloss_weight`` (or ``ll_mu``), with the following combinations:
   - ``lambdarank_weight = 1`` and ``lambdaloss_weight = 0`` to enforce the LambdaRank loss function (default).
   - ``lambdarank_weight = 0`` and ``lambdaloss_weight = 1`` to enforce the NDCG-Loss2 loss function.
   - ``lambdarank_weight > 0`` and ``lambdaloss_weight > 0`` to enforce the NDCG-Loss2++ loss function.
