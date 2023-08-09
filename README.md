@@ -26,7 +26,7 @@ The code implements [LambdaMART](https://www.microsoft.com/en-us/research/wp-con
 Usage
 ---
 
-Lambda_eX is accessible through the ``lambdarank`` parameter ``lambda_ex`` (or ``lambdaex``) with the following value:
+Lambda-eX is accessible through the ``lambdarank`` parameter ``lambda_ex`` (or ``lambdaex``) with the following value:
   - ``"plain"`` to enforce the original algorithm (no Lambda-eX).
   - ``"static"`` to enforce Lambda-eX static.
   - ``"random"`` to enforce Lambda-eX random.
