@@ -50,7 +50,7 @@ Examples
 Installation
 ---
 Follow the [installation instructions](https://lightgbm.readthedocs.io/en/latest/Installation-Guide.html) as mentioned in the LightGBM GitHub [repository](https://github.com/microsoft/LightGBM).
-Replace the repository ``https://github.com/microsoft/LightGBM``with this one.
+Where needed replace the repository ``https://github.com/microsoft/LightGBM`` with this one.
 
 Citation
 ---
