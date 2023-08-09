@@ -1,8 +1,10 @@
 <img src=http://iir2023.isti.cnr.it/wp-content/uploads/2023/03/IIR-compatto.png width=300 />
 
+32nd ACM International Conference on Information and Knowledge Management
 13TH Italian Information Retrieval Workshop
 ===============================
 
+Paper code of: [LambdaRank Gradients are Incoherent]()
 Paper code of: [Does LambdaMART Do What You Expect?](https://www.dei.unipd.it/~faggioli/temp/IIR-proceedings/paper-16.pdf)
 
 Lambda-eX is a document-pairs selection strategy built on top of LightGBM.

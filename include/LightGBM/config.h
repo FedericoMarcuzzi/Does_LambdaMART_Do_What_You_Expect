@@ -968,7 +968,7 @@ struct Config {
 
   // check = >=0
   // desc = used only in ``lambdarank`` application
-  // desc = controls the weight of the LambdaLoss with NDCG-Loss2 discount component, refer to "weight coefficient" in the Sec. 6.3 of `The LambdaLoss Framework for Ranking Metric Optimization paper <https://dl.acm.org/doi/pdf/10.1145/3269206.3271784>`__
+  // desc = controls the weight of the NDCG-Loss2 discount component (LambdaLoss), refer to "weight coefficient" in the Sec. 6.3 of `The LambdaLoss Framework for Ranking Metric Optimization paper <https://dl.acm.org/doi/pdf/10.1145/3269206.3271784>`__
   double ll_mu = 0;
 
   // type = multi-double

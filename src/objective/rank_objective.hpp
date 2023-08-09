@@ -107,11 +107,12 @@ class LambdarankNDCG : public RankingObjective {
         norm_(config.lambdarank_norm),
         truncation_level_(config.lambdarank_truncation_level) {
     std::map<std::string, size_t> strategy_map = {{"plain", 0}, {"static", 1}, {"random", 2}, {"all", 3}, {"all-static", 4}, {"all-random", 5}};
-    conf_ = config;
     num_iter_ = config.num_iterations;
     label_gain_ = config.label_gain;
     strategy_ = strategy_map[config.lambda_ex];
     objective_seed_ = config.objective_seed;
+    lr_mu_ = config.lr_mu;
+    ll_mu_ = config.ll_mu;
 
     // initialize DCG calculator
     DCGCalculator::DefaultLabelGain(&label_gain_);
@@ -147,10 +148,10 @@ class LambdarankNDCG : public RankingObjective {
 
     auto generator = std::mt19937(objective_seed_);
     std::uniform_int_distribution<int> distribution(0, 123456789);
-    rands_seeds = std::vector<float>(num_iter_);
+    rand_seeds_ = std::vector<float>(num_iter_);
 
     for (data_size_t i = 0; i < num_iter_; ++i) {
-      rands_seeds[i] = distribution(generator);
+      rand_seeds_[i] = distribution(generator);
     }
 
     // construct Sigmoid table to speed up Sigmoid transform
@@ -231,13 +232,13 @@ class LambdarankNDCG : public RankingObjective {
         /* if 0 is plain LambdaMART */
         if (strategy_) {
           if (strategy_ == 2 || strategy_ == 5) {
-            std::mt19937 gen(rands_seeds[curr_iter_]);
+            std::mt19937 gen(rand_seeds_[curr_iter_]);
             std::shuffle(std::begin(vector_idx), std::end(vector_idx), gen);
           }
           else
             vector_idx = sorted_idx;
 
-          /* all strategy */
+          /* ``all`` strategy */
           if (strategy_ == 3 || (strategy_ > 3 && min_missed_topk_label != min_pos_label)) {
             for (data_size_t i = 0; i < cnt; ++i) {
               data_size_t idx = vector_idx[i];
@@ -247,7 +248,7 @@ class LambdarankNDCG : public RankingObjective {
                 selected_missed_topk_size++;
               }
             }
-          /* static and random strategies */
+          /* ``static`` and ``random`` strategies */
           } else {
             /* number of missed-top-k documents to select */
             int to_select = std::accumulate(missed_topk.begin(), missed_topk.end(), 0, [](int sum, int val) { return (val > 0)? sum + val : sum; });
@@ -290,23 +291,18 @@ class LambdarankNDCG : public RankingObjective {
               high_rank = j;
               low_rank = i;
             }
-
-            /* NDCG-Loss2 */
-            const double lr_mu = 1;
-            const double ll_mu = 0;
-
             const data_size_t high = sorted_idx[high_rank];
             const int high_label = static_cast<int>(label[high]);
             const double high_score = score[high];
             const double high_label_gain = label_gain_[high_label];
             const double lr_high_discount = DCGCalculator::GetDiscount(high_rank); // LambdaRank high discount
-            const double ll2_high_discount = DCGCalculator::GetDiscount(abs(high_rank - low_rank)); // LambdaLoss with NDCG-Loss2 high discount
+            const double ll2_high_discount = DCGCalculator::GetDiscount(abs(high_rank - low_rank)); // NDCG-Loss2 high discount (LambdaLoss)
             const data_size_t low = sorted_idx[low_rank];
             const int low_label = static_cast<int>(label[low]);
             const double low_score = score[low];
             const double low_label_gain = label_gain_[low_label];
             const double lr_low_discount = DCGCalculator::GetDiscount(low_rank); // LambdaRank low discount
-            const double ll2_low_discount = DCGCalculator::GetDiscount(abs(high_rank - low_rank) + 1); // LambdaLoss with NDCG-Loss2 low discount
+            const double ll2_low_discount = DCGCalculator::GetDiscount(abs(high_rank - low_rank) + 1); // NDCG-Loss2 low discount (LambdaLoss)
 
             const double delta_score = high_score - low_score;
 
@@ -316,11 +312,11 @@ class LambdarankNDCG : public RankingObjective {
             // LambdaRank discount
             const double lambdarank_discount = fabs(lr_high_discount - lr_low_discount);
 
-            // LambdaLoss with NDCG-Loss2 discount
+            // NDCG-Loss2 discount (LambdaLoss)
             const double lambdaloss2_discount = fabs(ll2_high_discount - ll2_low_discount);
 
             // get discount of this pair
-            const double paired_discount = lr_mu * lambdarank_discount + ll_mu * lambdaloss2_discount;
+            const double paired_discount = lr_mu_ * lambdarank_discount + ll_mu_ * lambdaloss2_discount;
 
             // get delta NDCG
             double delta_pair_NDCG = dcg_gap * paired_discount * inverse_max_dcg;
@@ -403,12 +399,20 @@ class LambdarankNDCG : public RankingObjective {
   /*! \brief Factor that covert score to bin in Sigmoid table */
   double sigmoid_table_idx_factor_;
  private:
-  std::vector<float> rands_seeds;
-  Config conf_;
-  data_size_t num_iter_ = 0;
-  mutable data_size_t curr_iter_ = 0;
-  size_t strategy_ = 0;
+  /*! \brief Seed used to inizialize ``rands_seed``array */
   int objective_seed_ = 7;
+  /*! \brief Array of seeds for Lambda-eX's strategies: ``random``and `àll-random`` */
+  std::vector<float> rand_seeds_;
+  /*! \brief Maximum number of boosting iterations */
+  data_size_t num_iter_ = 0;
+  /*! \brief Current boosting iteration */
+  mutable data_size_t curr_iter_ = 0;
+  /*! \brief Lambda-eX strategy */
+  size_t strategy_ = 0;
+  /*! \brief Weight coefficient for the LambdaRank discount component  */
+  double lr_mu_ = 1;
+  /*! \brief Weight coefficient for the NDCG-Loss2 discount component (LambdaLoss) */
+  double ll_mu_ = 0;
 };
 
 /*!
