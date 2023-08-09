@@ -19,7 +19,7 @@ We demonstrate through extensive experiments, conducted using publicly available
 Implementation
 ---
 
-Lambda-eX is a document-pairs selection strategy built on top of LightGBM.
+Lambda-eX is a document-pairs selection strategy built on top of [LightGBM](https://github.com/microsoft/LightGBM).
 
 The code implements [LambdaMART](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/MSR-TR-2010-82.pdf), [LambdaLoss](https://dl.acm.org/doi/pdf/10.1145/3269206.3271784) (NDCG-Loss2 and NDCG-Loss2++) and all combinations of Lambda-eX that make use of these loss function.
 
@@ -42,9 +42,15 @@ The code implements three loss functions: LambdaRank, NDCG-Loss2 and NDCG-Loss2+
   - ``lambdarank_weight = 1`` and ``lambdaloss_weight > 0`` to enforce the NDCG-Loss2++ loss function.
 
 Examples
+---
  - for LambdaMART: ``objective="lambdarank"`` and ``lamnda_ex="plain"``
  - for LambdaMART-eX random: ``objective="lambdarank"`` and ``lamnda_ex="random"``
  - for LambdaLoss-eX static with NDCG-Loss2++: ``objective="lambdarank"``, ``lamnda_ex="static"``, and ``lambdaloss_weight = 0.5``.
+
+Installation
+---
+Follow the [installation instructions](https://lightgbm.readthedocs.io/en/latest/Installation-Guide.html) as mentioned in the LightGBM GitHub [repository](https://github.com/microsoft/LightGBM).
+Replace the repository ``https://github.com/microsoft/LightGBM``with this one.
 
 Citation
 ---
