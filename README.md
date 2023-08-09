@@ -2,7 +2,6 @@ LambdaRank Gradients are Incoherent
 ===============================
 
 This code is for CIKM 2023 full paper [LambdaRank Gradients are Incoherent]().
----
 
 Abstract
 ---
