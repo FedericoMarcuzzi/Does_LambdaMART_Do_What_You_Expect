@@ -8,7 +8,7 @@ Abstract
 
 In Information Retrieval (IR), the Learning-to-Rank (LTR) task requires building a ranking model that optimises a specific IR metric.
 One of the most effective approaches to do so is the well-known LambdaRank algorithm.
-LambdaRank uses gradient descent optimisation, and at its core, it defines approximate gradients, the so-called {\em lambdas}, for a non-differentiable IR metric.
+LambdaRank uses gradient descent optimisation, and at its core, it defines approximate gradients, the so-called *lambdas*, for a non-differentiable IR metric.
 Intuitively, each lambda describes how much a document's score should be ``pushed'' up/down to reduce the ranking error.
 
 In this work, we show that lambdas may be incoherent w.r.t. the metric being optimised: e.g., a document with high relevance in the ground truth may receive a smaller gradient push than a document with lower relevance.
@@ -19,7 +19,7 @@ We demonstrate through extensive experiments, conducted using publicly available
 Implementation
 ---
 
-Lambda-eX is a document-pairs selection strategy built on top of [LightGBM](https://github.com/microsoft/LightGBM).
+**Lambda-eX** is a document-pairs selection strategy built on top of [LightGBM](https://github.com/microsoft/LightGBM).
 
 The code implements [LambdaMART](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/MSR-TR-2010-82.pdf), [LambdaLoss](https://dl.acm.org/doi/pdf/10.1145/3269206.3271784) (NDCG-Loss2 and NDCG-Loss2++) algorithms and all the combinations of Lambda-eX that make use of LambdaMART and LambdaLoss loss functions.
 
