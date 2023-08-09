@@ -19,9 +19,9 @@ We demonstrate through extensive experiments, conducted using publicly available
 Implementation
 ---
 
-**Lambda-eX** is a document-pairs selection strategy built on top of [LightGBM](https://github.com/microsoft/LightGBM).
+***Lambda-eX*** is a document-pairs selection strategy built on top of [LightGBM](https://github.com/microsoft/LightGBM).
 
-The code implements [LambdaMART](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/MSR-TR-2010-82.pdf), [LambdaLoss](https://dl.acm.org/doi/pdf/10.1145/3269206.3271784) (NDCG-Loss2 and NDCG-Loss2++) algorithms and all the combinations of Lambda-eX that make use of LambdaMART and LambdaLoss loss functions.
+The code implements [LambdaMART](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/MSR-TR-2010-82.pdf), [LambdaLoss](https://dl.acm.org/doi/pdf/10.1145/3269206.3271784) (NDCG-Loss2 and NDCG-Loss2++) algorithms and all the combinations of **Lambda-eX** that make use of LambdaMART and LambdaLoss loss functions.
 
 Usage
 ---
