@@ -961,6 +961,16 @@ struct Config {
   // desc = set this to ``"all-random"`` to enforce lambda-ex all-random
   std::string lambda_ex = "plain";
 
+  // check = >=0
+  // desc = used only in ``lambdarank`` application
+  // desc = controls the weight of the LambdaRank discount component. 
+  double lr_mu = 1;
+
+  // check = >=0
+  // desc = used only in ``lambdarank`` application
+  // desc = controls the weight of the LambdaLoss with NDCG-Loss2 discount component, refer to "weight coefficient" in the Sec. 6.3 of `The LambdaLoss Framework for Ranking Metric Optimization paper <https://dl.acm.org/doi/pdf/10.1145/3269206.3271784>`__
+  double ll_mu = 0;
+
   // type = multi-double
   // default = 0,1,3,7,15,31,63,...,2^30-1
   // desc = used only in ``lambdarank`` application

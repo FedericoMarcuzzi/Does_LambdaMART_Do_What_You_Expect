@@ -305,6 +305,8 @@ const std::unordered_set<std::string>& Config::parameter_set() {
   "lambdarank_truncation_level",
   "lambdarank_norm",
   "lambda_ex",
+  "lr_mu",
+  "ll_mu"
   "label_gain",
   "metric",
   "metric_freq",
@@ -619,6 +621,12 @@ void Config::GetMembersFromString(const std::unordered_map<std::string, std::str
 
   GetString(params, "lambda_ex", &lambda_ex);
 
+  GetDouble(params, "lr_mu", &lr_mu);
+  CHECK_GE(lr_mu, 0);
+
+  GetDouble(params, "ll_mu", &ll_mu);
+  CHECK_GE(ll_mu, 0);
+
   if (GetString(params, "label_gain", &tmp_str)) {
     label_gain = Common::StringToArray<double>(tmp_str, ',');
   }
@@ -756,6 +764,9 @@ std::string Config::SaveMembersToString() const {
   str_buf << "[poisson_max_delta_step: " << poisson_max_delta_step << "]\n";
   str_buf << "[tweedie_variance_power: " << tweedie_variance_power << "]\n";
   str_buf << "[lambdarank_truncation_level: " << lambdarank_truncation_level << "]\n";
+  str_buf << "[lambda_ex: " << lambda_ex << "]\n";
+  str_buf << "[lr_mu: " << lr_mu << "]\n";
+  str_buf << "[ll_mu: " << ll_mu << "]\n";
   str_buf << "[lambdarank_norm: " << lambdarank_norm << "]\n";
   str_buf << "[label_gain: " << Common::Join(label_gain, ",") << "]\n";
   str_buf << "[eval_at: " << Common::Join(eval_at, ",") << "]\n";
@@ -897,6 +908,8 @@ const std::unordered_map<std::string, std::vector<std::string>>& Config::paramet
     {"lambdarank_truncation_level", {}},
     {"lambdarank_norm", {}},
     {"lambda_ex", {"lambdaex"}},
+    {"lr_mu", {"lambdarank_weight"}},
+    {"ll_mu", {"lambdaloss_weight"}},
     {"label_gain", {}},
     {"metric", {"metrics", "metric_types"}},
     {"metric_freq", {"output_freq"}},
@@ -1038,6 +1051,9 @@ const std::unordered_map<std::string, std::string>& Config::ParameterTypes() {
     {"poisson_max_delta_step", "double"},
     {"tweedie_variance_power", "double"},
     {"lambdarank_truncation_level", "int"},
+    {"lambda_ex", "string"},
+    {"lr_mu", "double"},
+    {"ll_mu", "double"},
     {"lambdarank_norm", "bool"},
     {"label_gain", "vector<double>"},
     {"metric", "vector<string>"},

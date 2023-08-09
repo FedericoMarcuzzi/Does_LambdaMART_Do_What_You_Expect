@@ -290,23 +290,38 @@ class LambdarankNDCG : public RankingObjective {
               high_rank = j;
               low_rank = i;
             }
+
+            /* NDCG-Loss2 */
+            const double lr_mu = 1;
+            const double ll_mu = 0;
+
             const data_size_t high = sorted_idx[high_rank];
             const int high_label = static_cast<int>(label[high]);
             const double high_score = score[high];
             const double high_label_gain = label_gain_[high_label];
-            const double high_discount = DCGCalculator::GetDiscount(high_rank);
+            const double lr_high_discount = DCGCalculator::GetDiscount(high_rank); // LambdaRank high discount
+            const double ll2_high_discount = DCGCalculator::GetDiscount(abs(high_rank - low_rank)); // LambdaLoss with NDCG-Loss2 high discount
             const data_size_t low = sorted_idx[low_rank];
             const int low_label = static_cast<int>(label[low]);
             const double low_score = score[low];
             const double low_label_gain = label_gain_[low_label];
-            const double low_discount = DCGCalculator::GetDiscount(low_rank);
+            const double lr_low_discount = DCGCalculator::GetDiscount(low_rank); // LambdaRank low discount
+            const double ll2_low_discount = DCGCalculator::GetDiscount(abs(high_rank - low_rank) + 1); // LambdaLoss with NDCG-Loss2 low discount
 
             const double delta_score = high_score - low_score;
 
             // get dcg gap
             const double dcg_gap = high_label_gain - low_label_gain;
+
+            // LambdaRank discount
+            const double lambdarank_discount = fabs(lr_high_discount - lr_low_discount);
+
+            // LambdaLoss with NDCG-Loss2 discount
+            const double lambdaloss2_discount = fabs(ll2_high_discount - ll2_low_discount);
+
             // get discount of this pair
-            const double paired_discount = fabs(high_discount - low_discount);
+            const double paired_discount = lr_mu * lambdarank_discount + ll_mu * lambdaloss2_discount;
+
             // get delta NDCG
             double delta_pair_NDCG = dcg_gap * paired_discount * inverse_max_dcg;
             // regular the delta_pair_NDCG by score distance
