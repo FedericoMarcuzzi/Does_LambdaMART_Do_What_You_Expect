@@ -9,7 +9,7 @@ Abstract
 In Information Retrieval (IR), the Learning-to-Rank (LTR) task requires building a ranking model that optimises a specific IR metric.
 One of the most effective approaches to do so is the well-known LambdaRank algorithm.
 LambdaRank uses gradient descent optimisation, and at its core, it defines approximate gradients, the so-called {\em lambdas}, for a non-differentiable IR metric.
-Intuitively, each lambda describes how much a document's score should be``pushed'' up/down to reduce the ranking error.
+Intuitively, each lambda describes how much a document's score should be ``pushed'' up/down to reduce the ranking error.
 
 In this work, we show that lambdas may be incoherent w.r.t. the metric being optimised: e.g., a document with high relevance in the ground truth may receive a smaller gradient push than a document with lower relevance.
 This behaviour goes far beyond the expected degree of approximation.
@@ -26,7 +26,7 @@ The code implements [LambdaMART](https://www.microsoft.com/en-us/research/wp-con
 Usage
 ---
 
-Lambda_eX is accessible through the ``lambdarank`` parameter ``lamnda_ex`` (or ``lambdaex``) with the following value:
+Lambda_eX is accessible through the ``lambdarank`` parameter ``lambda_ex`` (or ``lambdaex``) with the following value:
   - ``"plain"`` to enforce the original algorithm (no Lambda-eX).
   - ``"static"`` to enforce Lambda-eX static.
   - ``"random"`` to enforce Lambda-eX random.
@@ -43,9 +43,9 @@ The code implements three loss functions: LambdaRank, NDCG-Loss2 and NDCG-Loss2+
 
 Examples
 ---
- - for LambdaMART: ``objective="lambdarank"`` and ``lamnda_ex="plain"``
- - for LambdaMART-eX random: ``objective="lambdarank"`` and ``lamnda_ex="random"``
- - for LambdaLoss-eX static with NDCG-Loss2++: ``objective="lambdarank"``, ``lamnda_ex="static"``, and ``lambdaloss_weight = 0.5``.
+ - for LambdaMART: ``objective="lambdarank"`` and ``lambda_ex="plain"``
+ - for LambdaMART-eX random: ``objective="lambdarank"`` and ``lambda_ex="random"``
+ - for LambdaLoss-eX static with NDCG-Loss2++: ``objective="lambdarank"``, ``lambda_ex="static"``, and ``lambdaloss_weight = 0.5``.
 
 Installation
 ---
