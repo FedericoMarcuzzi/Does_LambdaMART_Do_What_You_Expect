@@ -17,7 +17,7 @@ We analyse such behaviour of LambdaRank gradients and we introduce some strategi
 We demonstrate through extensive experiments, conducted using publicly available datasets, that the proposed approach reduces the frequency of the incoherencies in LambdaRank and derivatives, and leads to models that achieve statistically significant improvements in the NDCG metric, without compromising the training efficiency.
 
 Implementation
-===============================
+---
 
 Lambda-eX is a document-pairs selection strategy built on top of LightGBM.
 
