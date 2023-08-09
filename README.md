@@ -16,9 +16,7 @@ This behaviour goes far beyond the expected degree of approximation.
 We analyse such behaviour of LambdaRank gradients and we introduce some strategies to reduce their incoherencies.
 We demonstrate through extensive experiments, conducted using publicly available datasets, that the proposed approach reduces the frequency of the incoherencies in LambdaRank and derivatives, and leads to models that achieve statistically significant improvements in the NDCG metric, without compromising the training efficiency.
 
-You can find the paper in `paper` directory or download it from [here](https://doi.acm.org/?doi=3477495.3531831).
-rent versions of packages (such as `pytorch`, `transformers`, etc.) may lead to different results from the paper. However, the trend should still hold no matter what versions of packages you use.
-
+Implementation
 ===============================
 
 Lambda-eX is a document-pairs selection strategy built on top of LightGBM.
