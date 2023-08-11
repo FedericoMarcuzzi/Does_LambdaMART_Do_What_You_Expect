@@ -37,16 +37,16 @@ Usage
 Loss functions
 ---
 The code implements three loss functions: LambdaRank, NDCG-Loss2 and NDCG-Loss2++. The three loss functions are accessible through the ``lambdarank`` parameters ``lambdarank_weight`` (or ``lr_mu``) and ``lambdaloss_weight`` (or ``ll_mu``), with the following combinations:
-  - ``lambdarank_weight = 1`` and ``lambdaloss_weight = 0`` to enforce the LambdaRank loss function (default).
-  - ``lambdarank_weight = 0`` and ``lambdaloss_weight = 1`` to enforce the NDCG-Loss2 loss function.
-  - ``lambdarank_weight = 1`` and ``lambdaloss_weight > 0`` to enforce the NDCG-Loss2++ loss function.
+  - ``lambdarank_weight=1`` and ``lambdaloss_weight=0`` to enforce the LambdaRank loss function (default).
+  - ``lambdarank_weight=0`` and ``lambdaloss_weight=1`` to enforce the NDCG-Loss2 loss function.
+  - ``lambdarank_weight=1`` and ``lambdaloss_weight>0`` to enforce the NDCG-Loss2++ loss function.
 
 Examples
 ---
- - for LambdaMART: ``objective = "lambdarank"``.
- - for LambdaMART-eX random: ``objective = "lambdarank"`` and ``lambda_ex = "random"``.
- - for LambdaLoss-eX static with NDCG-Loss2++: ``objective = "lambdarank"``, ``lambda_ex = "static"``, and ``lambdaloss_weight = 0.5``.
- - for LambdaLoss-eX static with NDCG-Loss2: ``objective = "lambdarank"``, ``lambdaex = "static"``, ``lr_mu = 0`` and ``ll_mu = 1``.
+ - for LambdaMART: ``objective="lambdarank"``.
+ - for LambdaMART-eX random: ``objective="lambdarank"`` and ``lambda_ex="random"``.
+ - for LambdaLoss-eX static with NDCG-Loss2++: ``objective="lambdarank"``, ``lambda_ex="static"``, and ``lambdaloss_weight=0.5``.
+ - for LambdaLoss-eX static with NDCG-Loss2: ``objective="lambdarank"``, ``lambdaex="static"``, ``lr_mu=0`` and ``ll_mu=1``.
 
 Installation
 ---
