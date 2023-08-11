@@ -46,6 +46,7 @@ Examples
  - for LambdaMART: ``objective="lambdarank"``.
  - for LambdaMART-eX random: ``objective="lambdarank"`` and ``lambda_ex="random"``.
  - for LambdaLoss-eX static with NDCG-Loss2++: ``objective="lambdarank"``, ``lambda_ex="static"``, and ``lambdaloss_weight = 0.5``.
+ - for LambdaLoss-eX static with NDCG-Loss2: ``objective="lambdarank"``, ``lambda_ex="static"``, ``lambdarank_weight = 0`` and ``lambdaloss_weight = 1``.
 
 Installation
 ---
