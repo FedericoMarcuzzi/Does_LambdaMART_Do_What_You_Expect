@@ -27,7 +27,7 @@ Usage
 ---
 
 **Lambda-eX** is accessible through the ``lambdarank`` parameter ``lambda_ex`` (or ``lambdaex``) with the following value:
-  - ``"plain"`` to enforce the original algorithm (no Lambda-eX).
+  - ``"plain"`` to enforce the original algorithm (no Lambda-eX) (default).
   - ``"static"`` to enforce Lambda-eX static.
   - ``"random"`` to enforce Lambda-eX random.
   - ``"all"`` to enforce Lambda-eX all.
@@ -43,8 +43,8 @@ The code implements three loss functions: LambdaRank, NDCG-Loss2 and NDCG-Loss2+
 
 Examples
 ---
- - for LambdaMART: ``objective="lambdarank"`` and ``lambda_ex="plain"``
- - for LambdaMART-eX random: ``objective="lambdarank"`` and ``lambda_ex="random"``
+ - for LambdaMART: ``objective="lambdarank"``.
+ - for LambdaMART-eX random: ``objective="lambdarank"`` and ``lambda_ex="random"``.
  - for LambdaLoss-eX static with NDCG-Loss2++: ``objective="lambdarank"``, ``lambda_ex="static"``, and ``lambdaloss_weight = 0.5``.
 
 Installation
