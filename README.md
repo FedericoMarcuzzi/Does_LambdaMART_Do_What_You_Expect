@@ -58,20 +58,20 @@ Citation
 
 ```
 @inproceedings{10.1145/3583780.3614948,
-author = {Marcuzzi, Federico and Lucchese, Claudio and Orlando, Salvatore},
-title = {LambdaRank Gradients Are Incoherent},
-year = {2023},
-isbn = {9798400701245},
-publisher = {Association for Computing Machinery},
-address = {New York, NY, USA},
-url = {https://doi.org/10.1145/3583780.3614948},
-doi = {10.1145/3583780.3614948},
-abstract = {In Information Retrieval (IR), the Learning-to-Rank (LTR) task requires building a ranking model that optimises a specific IR metric. One of the most effective approaches to do so is the well-known LambdaRank algorithm. LambdaRank uses gradient descent optimisation, and at its core, it defines approximate gradients, the so-called lambdas, for a non-differentiable IR metric. Intuitively, each lambda describes how much a document's score should be "pushed" up/down to reduce the ranking error.In this work, we show that lambdas may be incoherent w.r.t. the metric being optimised: e.g., a document with high relevance in the ground truth may receive a smaller gradient push than a document with lower relevance. This behaviour goes far beyond the expected degree of approximation. We analyse such behaviour of LambdaRank gradients and we introduce some strategies to reduce their incoherencies. We demonstrate through extensive experiments, conducted using publicly available datasets, that the proposed approach reduces the frequency of the incoherencies in LambdaRank and derivatives, and leads to models that achieve statistically significant improvements in the NDCG metric, without compromising the training efficiency.},
-booktitle = {Proceedings of the 32nd ACM International Conference on Information and Knowledge Management},
-pages = {1777–1786},
-numpages = {10},
-keywords = {lambdarank, information retrieval, learning to rank},
-location = {Birmingham, United Kingdom},
-series = {CIKM '23}
+  author    = {Marcuzzi, Federico and Lucchese, Claudio and Orlando, Salvatore},
+  title     = {LambdaRank Gradients Are Incoherent},
+  year      = {2023},
+  isbn      = {9798400701245},
+  publisher = {Association for Computing Machinery},
+  address   = {New York, NY, USA},
+  url       = {https://doi.org/10.1145/3583780.3614948},
+  doi       = {10.1145/3583780.3614948},
+  abstract  = {In Information Retrieval (IR), the Learning-to-Rank (LTR) task requires building a ranking model that optimises a specific IR metric. One of the most effective approaches to do so is the well-known LambdaRank algorithm. LambdaRank uses gradient descent optimisation, and at its core, it defines approximate gradients, the so-called lambdas, for a non-differentiable IR metric. Intuitively, each lambda describes how much a document's score should be "pushed" up/down to reduce the ranking error.In this work, we show that lambdas may be incoherent w.r.t. the metric being optimised: e.g., a document with high relevance in the ground truth may receive a smaller gradient push than a document with lower relevance. This behaviour goes far beyond the expected degree of approximation. We analyse such behaviour of LambdaRank gradients and we introduce some strategies to reduce their incoherencies. We demonstrate through extensive experiments, conducted using publicly available datasets, that the proposed approach reduces the frequency of the incoherencies in LambdaRank and derivatives, and leads to models that achieve statistically significant improvements in the NDCG metric, without compromising the training efficiency.},
+  booktitle = {Proceedings of the 32nd ACM International Conference on Information and Knowledge Management},
+  pages     = {1777–1786},
+  numpages  = {10},
+  keywords  = {lambdarank, information retrieval, learning to rank},
+  location  = {Birmingham, United Kingdom},
+  series    = {CIKM '23}
 }
 ```
